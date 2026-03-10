@@ -42,9 +42,9 @@ try {
     console.error(e);
 }
 
-/* artistes d'une scene par id de la scene et trié par date
+/* artistes d'une scene par id de la scene et trié par date*/
 try {
-    const records = await allartistebysceneId('n29ly34jcyoswgb');
+    const records = await allartistebysceneId('5122vpmnftjrbdp');
     console.log(JSON.stringify(records, null, 2));
 } catch (e) {
     console.error(e);
@@ -57,6 +57,7 @@ try {
 } catch (e) {
     console.error(e);
 }
+    
 /* ajouter un artiste
 try {
     const artisteData = {
