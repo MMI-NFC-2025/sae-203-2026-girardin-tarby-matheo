@@ -1,16 +1,15 @@
 ---
 import MenuOpen from "../assets/icone/menu-open1.svg";
 import MenuClose from "../assets/icone/menu_cross.svg";
+import HeaderLogo from "../assets/icone/header_img.svg";
 
 let isOpen = false;
 ---
 
-<header
-    class="w-full bg-[var(--color-primary)] px-4 py-3 flex items-center justify-between"
->
+<header class="w-full bg-primary px-4 py-3 flex items-center justify-between">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-2">
-        <img src="/assets/icone/tuba.svg" alt="Logo" class="w-10 h-10" />
+        <HeaderLogo class="w-full h-full" />
     </a>
 
     <!-- Bouton menu mobile -->
@@ -23,9 +22,7 @@ let isOpen = false;
     </button>
 
     <!-- Menu desktop -->
-    <nav
-        class="hidden md:flex gap-8 text-[var(--color-secondary-dark)] font-medium"
-    >
+    <nav class="hidden md:flex gap-8 text-black font-family text-2xl">
         <a href="/">Page d’accueil</a>
         <a href="/festival">Le festival</a>
         <a href="/programmation">Programmation</a>
@@ -37,27 +34,49 @@ let isOpen = false;
 <!-- Menu mobile -->
 <div
     id="mobile-menu"
-    class="fixed top-0 right-0 h-full w-64 bg-[var(--color-primary)] shadow-xl transform translate-x-full transition-transform duration-300 z-100 flex flex-col pl-6 pr-6 py-3 gap-6 text-xl font-medium"
+    class="fixed top-0 right-0 h-full w-full bg-primary shadow-xl transform translate-x-full transition-transform duration-300 z-100 flex flex-col pl-10 pr-10 py-3 gap-20 text-xl font-medium"
 >
-    <button id="close-btn" class="w-8 h-8 self-end">
-        <MenuClose />
-    </button>
-    <div class=" mr-30">
-        <a href="/" class="text-[var(--color-secondary-dark)]">
-            Page d’accueil
-        </a>
-        <a href="" class="text-[var(--color-secondary-dark)]">
-            Le festival
-        </a>
-        <a href="" class="text-[var(--color-secondary-dark)]">
-            Programmation
-        </a>
-        <a href="/scene" class="text-[var(--color-secondary-dark)]">
-            Les scènes
-        </a>
-        <a href="/infos" class="text-[var(--color-secondary-dark)]">
-            Infos pratiques
-        </a>
+    <ul class="flex flex-row items-center justify-between">
+        <li>
+            <a href="/" class="flex items-center gap-2">
+                <HeaderLogo class="w-auto h-auto" />
+            </a>
+        </li>
+        <li>
+            <button id="close-btn" class="w-8 h-8 self-end">
+                <MenuClose />
+            </button>
+        </li>
+    </ul>
+
+    <div class="w-full relative">
+        <ul class="w-fit relative flex flex-col gap-10">
+            <li class="w-full relative">
+                <a href="/" class="text-black font-family text-4xl">
+                    Page d’accueil
+                </a>
+            </li>
+            <li>
+                <a href="" class="text-black font-family text-4xl">
+                    Le festival
+                </a>
+            </li>
+            <li>
+                <a href="" class="text-black font-family text-4xl">
+                    Programmation
+                </a>
+            </li>
+            <li>
+                <a href="/scene" class="text-black font-family text-4xl">
+                    Les scènes
+                </a>
+            </li>
+            <li>
+                <a href="/infos" class="text-black font-family text-4xl"
+                    >Infos pratiques</a
+                >
+            </li>
+        </ul>
     </div>
 </div>
 
