@@ -1,0 +1,76 @@
+---
+import MenuOpen from "../assets/icone/menu-open1.svg";
+import MenuClose from "../assets/icone/menu_cross.svg";
+
+let isOpen = false;
+---
+
+<header
+    class="w-full bg-[var(--color-primary)] px-4 py-3 flex items-center justify-between"
+>
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2">
+        <img src="/assets/icone/tuba.svg" alt="Logo" class="w-10 h-10" />
+    </a>
+
+    <!-- Bouton menu mobile -->
+    <button
+        id="menu-btn"
+        class="md:hidden w-10 h-10 flex items-center justify-center"
+        aria-label="Ouvrir le menu"
+    >
+        <MenuOpen />
+    </button>
+
+    <!-- Menu desktop -->
+    <nav
+        class="hidden md:flex gap-8 text-[var(--color-secondary-dark)] font-medium"
+    >
+        <a href="/">Page d’accueil</a>
+        <a href="/festival">Le festival</a>
+        <a href="/programmation">Programmation</a>
+        <a href="/scenes">Les scènes</a>
+        <a href="/infos">Infos pratiques</a>
+    </nav>
+</header>
+
+<!-- Menu mobile -->
+<div
+    id="mobile-menu"
+    class="fixed top-0 right-0 h-full w-64 bg-[var(--color-primary)] shadow-xl transform translate-x-full transition-transform duration-300 z-100 flex flex-col pl-6 pr-6 py-3 gap-6 text-xl font-medium"
+>
+    <button id="close-btn" class="w-8 h-8 self-end">
+        <MenuClose />
+    </button>
+    <div class=" mr-30">
+        <a href="/" class="text-[var(--color-secondary-dark)]">
+            Page d’accueil
+        </a>
+        <a href="" class="text-[var(--color-secondary-dark)]">
+            Le festival
+        </a>
+        <a href="" class="text-[var(--color-secondary-dark)]">
+            Programmation
+        </a>
+        <a href="/scene" class="text-[var(--color-secondary-dark)]">
+            Les scènes
+        </a>
+        <a href="/infos" class="text-[var(--color-secondary-dark)]">
+            Infos pratiques
+        </a>
+    </div>
+</div>
+
+<script>
+    const btn = document.getElementById("menu-btn");
+    const closeBtn = document.getElementById("close-btn");
+    const menu = document.getElementById("mobile-menu");
+
+    btn.addEventListener("click", () => {
+        menu.classList.remove("translate-x-full");
+    });
+
+    closeBtn.addEventListener("click", () => {
+        menu.classList.add("translate-x-full");
+    });
+</script>
