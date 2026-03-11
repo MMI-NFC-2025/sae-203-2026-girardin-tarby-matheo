@@ -1,0 +1,143 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { artisteID, sceneID } from "../../../backend/backend.mjs";
+
+const { id } = Astro.params;
+const artiste = await artisteID(id);
+
+let scene = null;
+if (artiste.scene) {
+    scene = await sceneID(artiste.scene);
+}
+
+function fileUrl(record, file) {
+    return `https://fanfa-comtoise.girardin-tarby.fr/api/files/${record.collectionId}/${record.id}/${file}`;
+}
+
+function formatHeure(date) {
+    return new Date(date).toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+}
+
+const gallery = artiste.gallery ?? [];
+---
+
+<Layout>
+    <!-- HERO / IMAGE PRINCIPALE -->
+    <section class="bg-white">
+        <div
+            class="max-w-4xl mx-auto px-6 pt-10 pb-6 flex flex-col items-center"
+        >
+            <div class="w-full h-auto md:w-full md:h-auto overflow-hidden">
+                {
+                    artiste.image_principale && (
+                        <img
+                            src={fileUrl(artiste, artiste.image_principale)}
+                            alt={artiste.nom}
+                            class="w-full h-full object-cover"
+                        />
+                    )
+                }
+            </div>
+
+            <h1
+                class="text-3xl md:text-4xl font-extrabold text-secondary-dark text-center"
+            >
+                {artiste.nom}
+            </h1>
+        </div>
+    </section>
+
+    <!-- REPRÉSENTATION -->
+    <section class="bg-primary py-8 px-6">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-secondary-dark">
+                Représentation
+            </h2>
+
+            <div class="flex flex-col gap-2 text-black/80 text-lg">
+                <p>
+                    <span class="font-semibold">Scène :</span>
+                    {" "}
+                    {scene?.nom ?? "Scène inconnue"}
+                </p>
+                <p>
+                    <span class="font-semibold">Horaire :</span>
+                    {" "}
+                    {formatHeure(artiste.debut)} → {formatHeure(artiste.fin)}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESCRIPTION -->
+    <section class="bg-white py-10 px-6">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-secondary-dark">
+                Description
+            </h2>
+            <p class="text-black/80 text-lg leading-relaxed">
+                {artiste.description}
+            </p>
+        </div>
+    </section>
+
+    <!-- GALERIE / CARROUSEL INFINI -->
+    {
+        gallery.length > 0 && (
+            <section class="bg-primary py-10 px-6">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-2xl md:text-3xl font-bold text-secondary-dark mb-4">
+                        Galerie
+                    </h2>
+
+                    <div class="relative overflow-hidden">
+                        <div
+                            class="flex gap-4 will-change-transform"
+                            data-carousel-track
+                        >
+                            {gallery.map((img) => (
+                                <div class="min-w-[75%] md:min-w-[40%] lg:min-w-[30%] rounded-2xl overflow-hidden shadow-xl">
+                                    <img
+                                        src={fileUrl(artiste, img)}
+                                        alt={`${artiste.nom} - photo`}
+                                        class="w-full h-56 md:h-64 object-cover"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        )
+    }
+</Layout>
+
+<script>
+    const track = document.querySelector("[data-carousel-track]");
+    if (track) {
+        const slides = Array.from(track.children);
+        slides.forEach((slide) => {
+            const clone = slide.cloneNode(true);
+            track.appendChild(clone);
+        });
+
+        let offset = 0;
+
+        function animate() {
+            offset += 0.5;
+            track.style.transform = `translateX(${-offset}px)`;
+
+            const halfWidth = track.scrollWidth / 2;
+            if (offset >= halfWidth) {
+                offset = 0;
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    }
+</script>

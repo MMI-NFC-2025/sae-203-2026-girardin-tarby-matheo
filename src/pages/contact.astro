@@ -1,85 +1,91 @@
 ---
+// @ts-ignore: Astro component import
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import Hero from "../assets/img/hero.avif";
 ---
 
 <Layout>
-    <section
-        class="bg-white py-12 px-6 min-h-screen flex flex-col items-center md:grid md:grid-cols-10 md:gap-8"
-    >
-        <div class="w-full max-w-2xl">
-            <h1
-                class="text-[#FF9800] text-5xl md:text-6xl font-bold text-center mb-12 italic"
-            >
-                Contact
-            </h1>
+  <section class="bg-white py-12 px-6 min-h-screen flex flex-col items-center md:grid md:grid-cols-10 md:gap-8">
+    <!-- image + coordonnées -->
+    <div class="md:col-start-1 md:col-end-5">
+      <Image src={Hero} alt="Festival" class="rounded-2xl w-full h-auto object-cover" />
+      <p class="text-primary-dark mt-6 font-bold text-lg">Nos coordonnées</p>
+      <a class="text-secondary-dark block mt-1" href="mailto:fanfa-comtoise@gmail.com">fanfa-comtoise@gmail.com</a>
+      <a class="text-secondary-dark block mt-1" href="tel:0606060606">06 06 06 06 06</a>
+    </div>
 
-            <form action="#" method="POST" class="flex flex-col gap-6">
-                <div class="flex flex-col md:flex-row gap-6">
-                    <div class="flex-1">
-                        <label
-                            for="nom"
-                            class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4"
-                            >Nom</label
-                        >
-                        <input
-                            type="text"
-                            id="nom"
-                            name="nom"
-                            class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none"
-                        />
-                    </div>
-                    <div class="flex-1">
-                        <label
-                            for="prenom"
-                            class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4"
-                            >Prénom</label
-                        >
-                        <input
-                            type="text"
-                            id="prenom"
-                            name="prenom"
-                            class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none"
-                        />
-                    </div>
-                </div>
+    <!-- formulaire -->
+    <div class="w-full max-w-2xl md:col-start-6 md:col-end-10">
+      <h1 class="text-[#FF9800] text-5xl md:text-6xl font-bold text-center mb-12 italic">Contact</h1>
 
-                <div>
-                    <label
-                        for="email"
-                        class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4"
-                        >Email</label
-                    >
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none"
-                    />
-                </div>
-
-                <div>
-                    <label
-                        for="message"
-                        class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4"
-                        >Message</label
-                    >
-                    <textarea
-                        id="message"
-                        name="message"
-                        rows="5"
-                        class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none resize-none"
-                    ></textarea>
-                </div>
-
-                <div class="flex justify-center mt-4">
-                    <button
-                        type="submit"
-                        class="bg-[#7A4B1A] text-white font-bold py-3 px-12 rounded-full hover:scale-105 transition-transform cursor-pointer"
-                    >
-                        Envoyer
-                    </button>
-                </div>
-            </form>
+      <form id="contactForm" class="flex flex-col gap-6">
+        <div>
+          <label for="nom" class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4">Nom</label>
+          <input type="text" id="nom" name="nom" required class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none" />
         </div>
-    </section>
+
+        <div>
+          <label for="email" class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4">Email</label>
+          <input type="email" id="email" name="email" required class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none" />
+        </div>
+
+        <div>
+          <label for="sujet" class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4">Sujet</label>
+          <input type="text" id="sujet" name="sujet" required class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none" />
+        </div>
+
+        <div>
+          <label for="message" class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4">Message</label>
+          <textarea id="message" name="message" rows="5" required class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none resize-none"></textarea>
+        </div>
+
+        <div class="flex justify-center mt-4">
+          <button type="submit" class="bg-[#7A4B1A] text-white font-bold py-3 px-12 rounded-full hover:scale-105 transition-transform cursor-pointer">Envoyer</button>
+        </div>
+
+        <p id="successMsg" class="hidden text-green-600 font-bold text-center mt-4">Votre message a bien été envoyé !</p>
+        <p id="errorMsg" class="hidden text-red-600 font-bold text-center mt-4">Une erreur est survenue. Vérifiez vos informations.</p>
+      </form>
+    </div>
+  </section>
 </Layout>
+
+<script type="module">
+  const form = document.getElementById("contactForm");
+  const successMsg = document.getElementById("successMsg");
+  const errorMsg = document.getElementById("errorMsg");
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = {
+        nom: form.nom.value,
+        email: form.email.value,
+        sujet: form.sujet.value,
+        message: form.message.value,
+      };
+
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+
+        if (json.success) {
+          successMsg.classList.remove("hidden");
+          errorMsg.classList.add("hidden");
+          form.reset();
+        } else {
+          errorMsg.classList.remove("hidden");
+          successMsg.classList.add("hidden");
+        }
+      } catch {
+        errorMsg.classList.remove("hidden");
+        successMsg.classList.add("hidden");
+      }
+    });
+  }
+</script>

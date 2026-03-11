@@ -7,7 +7,6 @@ import DownArrow from "../assets/icone/down_arrow.svg";
 import Partenaire1 from "../assets/img/partenaire1.avif";
 import Partenaire2 from "../assets/img/partenaire2.avif";
 import Partenaire3 from "../assets/img/partenaire3.avif";
-
 ---
 
 <Layout>
@@ -159,18 +158,29 @@ import Partenaire3 from "../assets/img/partenaire3.avif";
                 <div
                     class="bg-white p-6 h-50 rounded-xl shadow-md hover:shadow-lg transition-shadow"
                 >
-                    <Image src={Partenaire1.src} alt="Partenaire 1" class="mt-8 w-74.4 h-auto md:w-74 md:h-auto" />
-
+                    <Image
+                        src={Partenaire1.src}
+                        alt="Partenaire 1"
+                        class="mt-8 w-74.4 h-auto md:w-74 md:h-auto"
+                    />
                 </div>
                 <div
                     class="bg-white p-6 h-50 rounded-xl shadow-md hover:shadow-lg transition-shadow"
                 >
-                    <Image src={Partenaire2.src} alt="Partenaire 2" class="w-74.4 h-auto md:w-74 md:h-auto" />
+                    <Image
+                        src={Partenaire2.src}
+                        alt="Partenaire 2"
+                        class="w-74.4 h-auto md:w-74 md:h-auto"
+                    />
                 </div>
                 <div
                     class="bg-white p-6 h-50 rounded-xl shadow-md hover:shadow-lg transition-shadow"
                 >
-                    <Image src={Partenaire3.src} alt="Partenaire 3" class="w-74.4 h-auto md:w-74 md:h-auto" />
+                    <Image
+                        src={Partenaire3.src}
+                        alt="Partenaire 3"
+                        class="w-74.4 h-auto md:w-74 md:h-auto"
+                    />
                 </div>
             </div>
         </div>
@@ -178,7 +188,6 @@ import Partenaire3 from "../assets/img/partenaire3.avif";
 </Layout>
 
 <script>
-    // Countdown Timer
     function updateCountdown() {
         const festivalDate = new Date("2026-06-27T00:18:00").getTime();
         const now = new Date().getTime();
@@ -206,5 +215,5 @@ import Partenaire3 from "../assets/img/partenaire3.avif";
     }
 
     updateCountdown();
-    setInterval(updateCountdown, 60000); // Update every minute
+    setInterval(updateCountdown, 60000);
 </script>
