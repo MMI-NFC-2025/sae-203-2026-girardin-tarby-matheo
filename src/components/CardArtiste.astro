@@ -1,11 +1,12 @@
 ---
-import { artistesSorted } from "../../backend/backend.mjs";
 
-const artistes = await artistesSorted();
+import { artistesSorted } from "../../backend/backend.mjs";
 
 function fileUrl(record, file) {
   return `https://fanfa-comtoise.girardin-tarby.fr/api/files/${record.collectionId}/${record.id}/${file}`;
 }
+
+const artistes = await artistesSorted();
 
 function formatHeure(date) {
   return new Date(date).toLocaleTimeString("fr-FR", {
@@ -14,38 +15,39 @@ function formatHeure(date) {
   });
 }
 ---
-<section id="programmation" class="bg-white py-16 px-6">
+<section id="programmation" class="bg-white py-20 px-6">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-primary-dark text-3xl md:text-5xl font-bold text-center mb-12 my-10">
+    <h2 class="text-primary-dark text-4xl md:text-5xl font-extrabold text-center mb-16">
       Programmation
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       {artistes.map((artiste) => (
-        <article class="bg-primary rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
-          
+        <article
+          class="bg-primary rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
+        >
           <!-- IMAGE -->
-          <div class="aspect-video bg-primary-dark/20 relative overflow-hidden">
+          <div class="aspect-video relative overflow-hidden">
             {artiste.image_principale && (
               <img
                 src={fileUrl(artiste, artiste.image_principale)}
                 alt={artiste.nom}
-                class="absolute inset-0 w-full h-full object-cover"
+                class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
               />
             )}
 
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
 
             <!-- DATE + HEURE -->
             <div class="absolute bottom-4 left-4 text-white space-y-1">
-              <span class="bg-secondary-dark px-3 py-1 rounded-full text-sm font-bold">
+              <span class="bg-secondary-dark/90 backdrop-blur px-3 py-1 rounded-full text-sm font-semibold shadow">
                 {new Date(artiste.debut).toLocaleDateString("fr-FR", {
                   day: "2-digit",
                   month: "2-digit",
                 })}
               </span>
 
-              <div class="text-xs opacity-90">
+              <div class="text-xs opacity-90 font-medium">
                 {formatHeure(artiste.debut)} → {formatHeure(artiste.fin)}
               </div>
             </div>
@@ -53,36 +55,32 @@ function formatHeure(date) {
 
           <!-- CONTENU -->
           <div class="p-6">
-            <h3 class="text-xl font-bold text-secondary-dark group-hover:text-primary-dark transition-colors">
+            <h3
+              class="text-xl font-bold text-secondary-dark group-hover:text-primary-dark transition-colors"
+            >
               {artiste.nom}
             </h3>
 
-            <p class="text-black/70 mt-2">
-              {artiste.expand?.scene?.nom ?? "Scène inconnue"}
+            <!-- SCÈNE (badge) -->
+            <p class="mt-2 flex items-center">
+              <span class="inline-block bg-secondary-dark/20 text-secondary-dark px-2 py-1 rounded-md text-xs font-bold">
+                {artiste.expand?.scene?.nom || "Scène inconnue"}
+              </span>
             </p>
 
-            <p class="text-black/50 text-sm italic mt-1">
+            <p class="text-black/50 text-sm italic mt-2">
               {artiste.genre_musical}
             </p>
 
             <a
               href={`/artiste/${artiste.id}`}
-              class="inline-block mt-4 text-secondary-dark font-bold hover:underline"
+              class="inline-block mt-5 text-secondary-dark font-bold hover:text-primary-dark transition-colors"
             >
               En savoir plus →
             </a>
           </div>
         </article>
       ))}
-    </div>
-
-    <div class="text-center mt-12">
-      <a
-        href="/programmation"
-        class="bg-primary-dark hover:bg-secondary-dark text-white font-bold py-3 px-10 rounded-full transition-colors text-lg"
-      >
-        Voir toute la programmation
-      </a>
     </div>
   </div>
 </section>

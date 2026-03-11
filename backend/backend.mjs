@@ -3,7 +3,10 @@ const pb = new PocketBase('https://fanfa-comtoise.girardin-tarby.fr');
 
 // artistes
 export async function artistesSorted() {
-    return await pb.collection('artistes').getFullList({ sort: 'debut' });
+    return await pb.collection('artistes').getFullList({ 
+        sort: 'debut',
+        expand: "scene", 
+    });
 }
 
 export async function artistesName() {

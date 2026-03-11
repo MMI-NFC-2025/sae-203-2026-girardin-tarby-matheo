@@ -1,0 +1,112 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+// Images
+import Hero from "../assets/img/hero.avif";
+import InfosImg from "../assets/img/infos-pratique_img.avif";
+---
+
+<Layout>
+    <!-- HERO -->
+    <section class="relative w-full">
+        <Image
+            src={Hero}
+            alt="Fanfare dans la rue"
+            class="w-full h-[45vh] md:h-[60vh] object-cover"
+        />
+        <div class="absolute inset-0 bg-black/40"></div>
+
+        <h1
+            class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-4xl md:text-5xl font-bold drop-shadow-lg"
+        >
+            Infos pratiques
+        </h1>
+    </section>
+
+    <!-- INTRO -->
+    <section class="bg-primary py-12 px-6 text-center">
+        <h2 class="text-secondary-dark text-3xl md:text-4xl font-bold mb-4">
+            Le festival est ouvert à tous
+        </h2>
+        <p class="text-black/80 text-lg md:text-xl max-w-2xl mx-auto">
+            Le festival est gratuit et accessible à tous, sans exception.
+        </p>
+    </section>
+
+    <!-- OU LOGER -->
+    <section class="bg-white py-12 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-primary-dark text-3xl md:text-4xl font-bold mb-4">
+                Où loger
+            </h2>
+            <p class="text-black/80 text-lg leading-relaxed">
+                La ville de Montbéliard compte plusieurs hôtels dans le
+                centre-ville et en périphérie. Vous trouverez facilement un
+                hébergement adapté à vos besoins.
+            </p>
+        </div>
+        <div class="md:grid md:grid-cols-10 md:gap-8 md:mt-5">
+            <Image
+                src={InfosImg}
+                alt="Fanfare dans la rue"
+                class="w-full h-auto md:h-auto md:w-full object-cover md:col-start-3 md:col-end-8 rounded-2xl mt-8 md:mt-0"
+            />
+        </div>
+    </section>
+
+    <!-- TRANSPORT -->
+    <section class="bg-white py-12 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-secondary-dark text-3xl md:text-4xl font-bold mb-4">
+                Transport
+            </h2>
+            <p class="text-black/80 text-lg leading-relaxed">
+                Des parkings sont disponibles dans toute la ville, vous
+                permettant de venir en voiture et de vous garer facilement. La
+                gare se situe proche du centre-ville et le réseau de bus assure
+                le transport dans toute la ville.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-white py-12 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-primary-dark text-3xl md:text-4xl font-bold mb-8">
+                FAQ
+            </h2>
+
+            <div class="space-y-6">
+                <div>
+                    <p class="text-secondary-dark font-bold text-xl">
+                        Peut-on manger au festival ?
+                    </p>
+                    <p class="text-black/80 text-lg">
+                        Oui, des stands de nourriture seront prévus à cet effet.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-secondary-dark font-bold text-xl">
+                        Fait-on le tri sélectif ?
+                    </p>
+                    <p class="text-black/80 text-lg">
+                        Oui, des poubelles de tri seront disponibles sur tout le
+                        site.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-secondary-dark font-bold text-xl">
+                        Puis-je venir avec mon appareil photo ?
+                    </p>
+                    <p class="text-black/80 text-lg">
+                        Oui, vous pouvez prendre votre appareil pour garder les
+                        meilleurs souvenirs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
