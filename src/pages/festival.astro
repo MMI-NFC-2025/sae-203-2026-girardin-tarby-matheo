@@ -1,0 +1,147 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+import HeroFestival from "../assets/img/hero3.avif";
+import EquipeImg from "../assets/img/a-propos_img.avif";
+import Trumpet from "../assets/icone/trumpet.svg";
+import Hero from "../assets/img/hero.avif";
+---
+
+<Layout>
+    <!-- HERO -->
+    <section
+        class="relative h-[70vh] md:h-[80vh] flex items-center justify-center text-center text-white overflow-hidden"
+    >
+        <Image
+            src={HeroFestival}
+            alt="Festival"
+            class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <div class="relative z-10 px-6">
+            <h1
+                class="text-4xl md:text-6xl font-extrabold text-primary drop-shadow-xl"
+            >
+                La Fanfa'comtoise
+            </h1>
+            <p class="text-lg md:text-2xl mt-4 text-white/90">
+                Un festival créé pour donner le sourire
+            </p>
+        </div>
+    </section>
+
+    <!-- LE FESTIVAL -->
+    <section class="bg-white py-16 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-secondary-dark text-3xl md:text-4xl font-bold mb-6">
+                Le festival
+            </h2>
+
+            <p class="text-black/80 text-lg leading-relaxed">
+                Notre festival a été créé avec un seul but : <span
+                    class="font-semibold">donner le sourire</span
+                >.
+            </p>
+
+            <p class="text-black/80 text-lg leading-relaxed mt-4">
+                Il s'agit de la première édition de la Fanfa'comtoise.
+            </p>
+
+            <p class="text-black/80 text-lg leading-relaxed mt-4">
+                Nous sommes un collectif de bénévoles qui ne recherche qu'une
+                seule chose :
+                <span class="font-semibold">la convivialité et le partage</span> dans
+                la ville de Montbéliard.
+            </p>
+        </div>
+    </section>
+
+    <!-- EQUIPE TECHNIQUE -->
+    <section class="bg-primary py-16 px-6">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+            <div>
+                <h2
+                    class="text-secondary-dark text-3xl md:text-4xl font-bold mb-4"
+                >
+                    Notre équipe technique
+                </h2>
+                <p class="text-black/80 text-lg leading-relaxed">
+                    Prête pour assurer votre sécurité ainsi que votre bien-être.
+                </p>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden shadow-xl">
+                <Image
+                    src={EquipeImg}
+                    alt="Équipe technique"
+                    class="w-full h-full object-cover"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- VALEURS -->
+    <section class="bg-white py-16 px-6">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+            <div
+                class="rounded-2xl overflow-hidden md:order-1 order-2"
+            >
+                <div class="md:order-2 order-1">
+                    <h2
+                        class="text-secondary-dark text-3xl md:text-4xl font-bold mb-4"
+                    >
+                        Nos valeurs
+                    </h2>
+                    <p class="text-black/80 text-lg leading-relaxed">
+                        Nous sommes concernés par le bien-être et la
+                        convivialité de nos festivaliers, par le respect de
+                        l'environnement et par l'accessibilité pour tous.
+                    </p>
+                    <p class="text-black/80 text-lg leading-relaxed mt-4">
+                        Notre festival est <span class="font-semibold"
+                            >gratuit</span
+                        >, ouvert à tous, et pensé pour accueillir des publics
+                        de tous horizons.
+                    </p>
+                </div>
+            </div>
+            <Image
+                src={Trumpet.src}
+                alt="Trumpet"
+                class="w-full h-auto object-cover"
+            />
+        </div>
+
+        <!-- THÉMATIQUES -->
+        <section class="bg-primary py-16 px-6 mt-10">
+            <div
+                class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center"
+            >
+                <div>
+                    <h2
+                        class="text-secondary-dark text-3xl md:text-4xl font-bold mb-4"
+                    >
+                        Thématiques
+                    </h2>
+                    <p class="text-black/80 text-lg leading-relaxed">
+                        Pour cette première édition, nous mettons à l'honneur
+                        les fanfares et le jazz.
+                    </p>
+                    <p class="text-black/80 text-lg leading-relaxed mt-4">
+                        Vous retrouverez sur scène des groupes venus de près ou
+                        de loin pour vous faire découvrir leur style de musique,
+                        parfois méconnu du grand public.
+                    </p>
+                </div>
+                <Image
+                    src={Hero.src}
+                    alt="Trumpet"
+                    class="w-full h-auto object-cover"
+                />
+                <div class="rounded-2xl overflow-hidden shadow-xl"></div>
+            </div>
+        </section>
+    </section>
+</Layout>
