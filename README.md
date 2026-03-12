@@ -3,8 +3,4 @@
 - Prénom: Mathéo
 - url: https://app-fanfa-comtoise.girardin-tarby.fr
 
-![Rendu MCD](MCD_SAE203.png)
-
 Lien pocketbase: https://fanfa-comtoise.girardin-tarby.fr/_/
-ID superusers : matheo.girardin--tarby@edu.univ-fcomte.fr
-Mdp superusers : M@theo90
