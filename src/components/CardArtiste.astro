@@ -35,8 +35,6 @@ function formatHeure(date: any) {
       )}
 
       <div class="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"></div>
-
-      <!-- DATE + HEURE -->
       <div class="absolute bottom-4 left-4 text-white space-y-1">
         <span class="bg-secondary-dark/90 backdrop-blur px-3 py-1 rounded-full text-sm font-semibold shadow">
           {artiste?.debut && new Date(artiste.debut).toLocaleDateString("fr-FR", {
@@ -52,14 +50,10 @@ function formatHeure(date: any) {
         )}
       </div>
     </div>
-
-    <!-- CONTENU -->
     <div class="p-6">
       <h3 class="text-xl font-bold text-secondary-dark group-hover:text-primary-dark transition-colors">
         {artiste?.nom || "Artiste inconnu"}
       </h3>
-
-      <!-- SCÈNE (badge) -->
       <p class="mt-2 flex items-center">
         <span class="inline-block bg-secondary-dark/20 text-secondary-dark px-2 py-1 rounded-md text-xs font-bold">
           {sceneName || artiste?.expand?.scene?.nom || "Scène inconnue"}
@@ -90,7 +84,6 @@ function formatHeure(date: any) {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {artistes?.slice(0, limit).map((item) => (
           <article class="bg-primary rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
-            <!-- IMAGE -->
             <div class="aspect-video relative overflow-hidden">
               {item?.image_principale && (
                 <img
@@ -101,8 +94,6 @@ function formatHeure(date: any) {
               )}
 
               <div class="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"></div>
-
-              <!-- DATE + HEURE -->
               <div class="absolute bottom-4 left-4 text-white space-y-1">
                 <span class="bg-secondary-dark/90 backdrop-blur px-3 py-1 rounded-full text-sm font-semibold shadow">
                   {item?.debut && new Date(item.debut).toLocaleDateString("fr-FR", {
@@ -118,14 +109,10 @@ function formatHeure(date: any) {
                 )}
               </div>
             </div>
-
-            <!-- CONTENU -->
             <div class="p-6">
               <h3 class="text-xl font-bold text-secondary-dark group-hover:text-primary-dark transition-colors">
                 {item?.nom || "Artiste inconnu"}
               </h3>
-
-              <!-- SCÈNE (badge) -->
               <p class="mt-2 flex items-center">
                 <span class="inline-block bg-secondary-dark/20 text-secondary-dark px-2 py-1 rounded-md text-xs font-bold">
                   {item?.expand?.scene?.nom || "Scène inconnue"}

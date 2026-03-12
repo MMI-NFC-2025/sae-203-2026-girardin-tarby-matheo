@@ -1,14 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-
-// Images
 import Hero from "../assets/img/hero.avif";
 import InfosImg from "../assets/img/infos-pratique_img.avif";
 ---
 
 <Layout title="Infos pratiques">
-    <!-- HERO -->
     <section class="relative w-full">
         <Image
             src={Hero}
@@ -23,8 +20,6 @@ import InfosImg from "../assets/img/infos-pratique_img.avif";
             Infos pratiques
         </h1>
     </section>
-
-    <!-- INTRO -->
     <section class="bg-primary py-12 px-6 text-center">
         <h2 class="text-secondary-dark text-3xl md:text-4xl font-bold mb-4">
             Le festival est ouvert à tous
@@ -33,8 +28,6 @@ import InfosImg from "../assets/img/infos-pratique_img.avif";
             Le festival est gratuit et accessible à tous, sans exception.
         </p>
     </section>
-
-    <!-- OU LOGER -->
     <section class="bg-white py-12 px-6">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-primary-dark text-3xl md:text-4xl font-bold mb-4">
@@ -54,8 +47,6 @@ import InfosImg from "../assets/img/infos-pratique_img.avif";
             />
         </div>
     </section>
-
-    <!-- TRANSPORT -->
     <section class="bg-white py-12 px-6">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-secondary-dark text-3xl md:text-4xl font-bold mb-4">
@@ -69,8 +60,6 @@ import InfosImg from "../assets/img/infos-pratique_img.avif";
             </p>
         </div>
     </section>
-
-    <!-- FAQ -->
     <section class="bg-white py-12 px-6">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-primary-dark text-3xl md:text-4xl font-bold mb-8">

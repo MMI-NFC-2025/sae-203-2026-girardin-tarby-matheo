@@ -5,7 +5,6 @@ import CardArtiste from "../../components/CardArtiste.astro";
 
 const artistes = await artistesSorted();
 
-// Clonage propre pour garder expand.scene dans le JSON envoyé au client
 const artistesClient = artistes.map((a) => ({
     ...a,
     expand: {
@@ -13,12 +12,10 @@ const artistesClient = artistes.map((a) => ({
     },
 }));
 
-// Récupération des scènes
 const scenes = Array.from(
     new Set(artistes.map((a) => a.expand?.scene?.nom).filter(Boolean)),
 );
 
-// Récupération des genres
 const genres = Array.from(
     new Set(artistes.map((a) => a.genre_musical).filter(Boolean)),
 );
@@ -32,14 +29,12 @@ const genres = Array.from(
             >
                 Programmation
             </h2>
-            <!-- BARRE DE TRI -->
             <div class="bg-primary p-6 rounded-2xl shadow-md mb-12">
                 <h2 class="text-secondary-dark font-bold text-2xl mb-4">
                     Filtrer la programmation
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
-                    <!-- SCÈNE -->
                     <div>
                         <label class="block text-[#7A4B1A] font-bold mb-2"
                             >Scène</label
@@ -52,8 +47,6 @@ const genres = Array.from(
                             {scenes.map((s) => <option value={s}>{s}</option>)}
                         </select>
                     </div>
-
-                    <!-- GENRE -->
                     <div>
                         <label class="block text-[#7A4B1A] font-bold mb-2">
                             Genre musical
@@ -66,8 +59,6 @@ const genres = Array.from(
                             {genres.map((g) => <option value={g}>{g}</option>)}
                         </select>
                     </div>
-
-                    <!-- JOUR -->
                     <div>
                         <label class="block text-[#7A4B1A] font-bold mb-2"
                             >Jour</label
@@ -81,8 +72,6 @@ const genres = Array.from(
                             <option value="28">28 Juin</option>
                         </select>
                     </div>
-
-                    <!-- BOUTON -->
                     <div class="flex md:justify-end">
                         <button
                             id="applyFilters"
@@ -93,14 +82,11 @@ const genres = Array.from(
                     </div>
                 </div>
             </div>
-
-            <!-- LISTE DES ARTISTES (conteneur + data-artistes) -->
             <div
                 id="artistesContainer"
                 class="grid grid-cols-12 gap-8"
                 data-artistes={JSON.stringify(artistesClient)}
             >
-                <!-- Rendu initial côté serveur -->
                 <CardArtiste artistes={artistesClient} />
             </div>
         </div>

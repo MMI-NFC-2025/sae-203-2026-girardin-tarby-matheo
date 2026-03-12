@@ -7,12 +7,9 @@ let isOpen = false;
 ---
 
 <header class="w-full bg-primary px-4 py-3 flex items-center justify-between">
-    <!-- Logo -->
     <a href="/" class="flex items-center gap-2">
         <HeaderLogo class="w-full h-full" />
     </a>
-
-    <!-- Bouton menu mobile -->
     <button
         id="menu-btn"
         class="md:hidden w-10 h-10 flex items-center justify-center"
@@ -20,8 +17,6 @@ let isOpen = false;
     >
         <MenuOpen />
     </button>
-
-    <!-- Menu desktop -->
     <nav class="hidden md:flex gap-8 text-black font-family text-2xl">
         <a href="/festival">Le festival</a>
         <a href="/artiste">Programmation</a>
@@ -29,8 +24,6 @@ let isOpen = false;
         <a href="/infos">Infos pratiques</a>
     </nav>
 </header>
-
-<!-- Menu mobile -->
 <div
     id="mobile-menu"
     class="fixed top-0 right-0 h-full w-full bg-primary shadow-xl transform translate-x-full transition-transform duration-300 z-100 flex flex-col pl-10 pr-10 py-3 gap-20 text-xl font-medium"

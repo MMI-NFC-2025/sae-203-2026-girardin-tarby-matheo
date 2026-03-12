@@ -14,14 +14,11 @@ function fileUrl(record, file) {
 <Layout title={scene.nom}>
     <section class="bg-white py-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <!-- TITRE -->
             <h1
                 class="text-primary-dark text-4xl md:text-5xl font-extrabold mb-10"
             >
                 {scene.nom}
             </h1>
-
-            <!-- IMAGE -->
             {
                 scene.photo && (
                     <img
@@ -31,8 +28,6 @@ function fileUrl(record, file) {
                     />
                 )
             }
-
-            <!-- DESCRIPTION -->
             {
                 scene.description && (
                     <p class="text-black/70 leading-relaxed text-lg mb-10">
@@ -40,16 +35,12 @@ function fileUrl(record, file) {
                     </p>
                 )
             }
-
-            <!-- LOCALISATION -->
             <div class="mt-10">
                 <h2 class="text-2xl font-bold text-secondary-dark mb-3">
                     Localisation
                 </h2>
                 {scene.localisation}
             </div>
-
-            <!-- ARTISTES -->
             <div class="mt-12">
                 <h2 class="text-2xl font-bold text-secondary-dark mb-4">
                     Artistes programmés
@@ -73,8 +64,6 @@ function fileUrl(record, file) {
                 }
             </div>
         </div>
-
-        <!-- RETOUR -->
         <div class="mt-12">
             <a
                 href="/scenes"
