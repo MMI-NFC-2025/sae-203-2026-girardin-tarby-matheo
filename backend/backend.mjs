@@ -1,11 +1,11 @@
 import PocketBase from 'pocketbase';
-const pb = new PocketBase('https://fanfa-comtoise.girardin-tarby.fr:443');
+const pb = new PocketBase('https://fanfa-comtoise.girardin-tarby.fr');
 
 // artistes
 export async function artistesSorted() {
-    return await pb.collection('artistes').getFullList({ 
+    return await pb.collection('artistes').getFullList({
         sort: 'debut',
-        expand: "scene", 
+        expand: "scene",
     });
 }
 
@@ -19,11 +19,25 @@ export async function artisteID(id) {
 
 // scènes
 export async function scenesName() {
-    return await pb.collection('scene').getFullList({ sort: 'nom' });
+    return await pb.collection('scene').getFullList({
+        sort: 'nom',
+        expand: "artiste",
+    });
 }
 
 export async function sceneID(id) {
-    return await pb.collection('scene').getOne(id);
+    return await pb.collection('scene').getOne(id, {
+        expand: 'artiste',
+    });
+}
+
+// Récupère tous les artistes avec expand pour une scène spécifique
+export async function artistesBySceneId(sceneId) {
+    return await pb.collection('artistes').getFullList({
+        filter: `scene = "${sceneId}"`,
+        sort: 'debut',
+        expand: "scene",
+    });
 }
 
 export async function allartistebysceneId(id) {

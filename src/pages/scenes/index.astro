@@ -6,7 +6,7 @@ import { scenesName } from "../../../backend/backend.mjs";
 const scenes = await scenesName();
 ---
 
-<Layout>
+<Layout title="Scènes">
     <section id="scenes" class="bg-white py-20 px-6">
         <div class="max-w-6xl mx-auto">
             <h1
@@ -15,8 +15,14 @@ const scenes = await scenesName();
                 Nos Scènes
             </h1>
 
-            <div class="grid grid-cols-1 md:grid-cols-9 lg:grid-cols-3 gap-10">
-                {scenes.map((scene) => <CardScene scene={scene} />)}
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+                {
+                    scenes.map((scene) => (
+                        <div class="md:col-span-6">
+                            <CardScene scene={scene} />
+                        </div>
+                    ))
+                }
             </div>
         </div>
     </section>

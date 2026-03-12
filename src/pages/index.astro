@@ -9,7 +9,7 @@ import Partenaire2 from "../assets/img/partenaire2.avif";
 import Partenaire3 from "../assets/img/partenaire3.avif";
 ---
 
-<Layout>
+<Layout title="Accueil">
     <!-- Hero Section -->
     <section
         class="relative min-h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden"
@@ -91,7 +91,7 @@ import Partenaire3 from "../assets/img/partenaire3.avif";
 
             <!-- Billetterie Button -->
             <a
-                href="#billetterie"
+                href="billetterie"
                 class="mt-8 bg-primary-dark hover:bg-primary text-white font-bold py-3 px-10 rounded-full transition-colors text-lg md:text-xl"
             >
                 Billetterie
@@ -132,7 +132,7 @@ import Partenaire3 from "../assets/img/partenaire3.avif";
                     Voir les artistes
                 </a>
                 <a
-                    href="/scene"
+                    href="/scenes"
                     class="bg-white hover:bg-gray-100 text-secondary-dark font-bold py-3 px-8 rounded-full transition-colors border-2 border-secondary-dark"
                 >
                     Decouvrir les scenes
@@ -141,10 +141,10 @@ import Partenaire3 from "../assets/img/partenaire3.avif";
         </div>
     </section>
 
-    <CardArtiste />
+    <CardArtiste limit={3} />
     <div class="text-center mt-16">
         <a
-            href="/programmation"
+            href="/artiste"
             class="bg-primary-dark hover:bg-secondary-dark text-white font-bold py-3 px-10 rounded-full transition-colors text-lg shadow-md"
         >
             Voir toute la programmation

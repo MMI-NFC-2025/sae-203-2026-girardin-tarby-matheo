@@ -6,7 +6,12 @@ function fileUrl(record: any, file: any) {
   return `https://fanfa-comtoise.girardin-tarby.fr/api/files/${record.collectionId}/${record.id}/${file}`;
 }
 
-const artistes = await artistesSorted();
+const { artiste, sceneName, limit = 6 } = Astro.props;
+
+// Si "artiste" est fourni, c'est une single card
+// Sinon, récupère la liste et affiche une grille
+const isSingleCard = !!artiste;
+const artistes = isSingleCard ? null : await artistesSorted();
 
 function formatHeure(date: any) {
   return new Date(date).toLocaleTimeString("fr-FR", {
@@ -14,73 +19,135 @@ function formatHeure(date: any) {
     minute: "2-digit",
   });
 }
+
 ---
-<section id="programmation" class="bg-white py-20 px-6">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-primary-dark text-4xl md:text-5xl font-extrabold text-center mb-16">
-      Programmation
-    </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      {artistes.map((artiste) => (
-        <article
-          class="bg-primary rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
-        >
-          <!-- IMAGE -->
-          <div class="aspect-video relative overflow-hidden">
-            {artiste.image_principale && (
-              <img
-                src={fileUrl(artiste, artiste.image_principale)}
-                alt={artiste.nom}
-                class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-              />
-            )}
+{isSingleCard ? (
+  <article class="bg-primary rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+    <!-- IMAGE -->
+    <div class="aspect-video relative overflow-hidden">
+      {artiste?.image_principale && (
+        <img
+          src={fileUrl(artiste, artiste.image_principale)}
+          alt={artiste.nom}
+          class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+        />
+      )}
 
-            <div class="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"></div>
+      <div class="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"></div>
 
-            <!-- DATE + HEURE -->
-            <div class="absolute bottom-4 left-4 text-white space-y-1">
-              <span class="bg-secondary-dark/90 backdrop-blur px-3 py-1 rounded-full text-sm font-semibold shadow">
-                {new Date(artiste.debut).toLocaleDateString("fr-FR", {
-                  day: "2-digit",
-                  month: "2-digit",
-                })}
-              </span>
+      <!-- DATE + HEURE -->
+      <div class="absolute bottom-4 left-4 text-white space-y-1">
+        <span class="bg-secondary-dark/90 backdrop-blur px-3 py-1 rounded-full text-sm font-semibold shadow">
+          {artiste?.debut && new Date(artiste.debut).toLocaleDateString("fr-FR", {
+            day: "2-digit",
+            month: "2-digit",
+          })}
+        </span>
 
-              <div class="text-xs opacity-90 font-medium">
-                {formatHeure(artiste.debut)} → {formatHeure(artiste.fin)}
+        {artiste?.debut && artiste?.fin && (
+          <div class="text-xs opacity-90 font-medium">
+            {formatHeure(artiste.debut)} → {formatHeure(artiste.fin)}
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- CONTENU -->
+    <div class="p-6">
+      <h3 class="text-xl font-bold text-secondary-dark group-hover:text-primary-dark transition-colors">
+        {artiste?.nom || "Artiste inconnu"}
+      </h3>
+
+      <!-- SCÈNE (badge) -->
+      <p class="mt-2 flex items-center">
+        <span class="inline-block bg-secondary-dark/20 text-secondary-dark px-2 py-1 rounded-md text-xs font-bold">
+          {sceneName || artiste?.expand?.scene?.nom || "Scène inconnue"}
+        </span>
+      </p>
+
+      {artiste?.genre_musical && (
+        <p class="text-black/50 text-sm italic mt-2">
+          {artiste.genre_musical}
+        </p>
+      )}
+
+      <a
+        href={`/artiste/${artiste?.id}`}
+        class="inline-block mt-5 text-secondary-dark font-bold hover:text-primary-dark transition-colors"
+      >
+        En savoir plus →
+      </a>
+    </div>
+  </article>
+) : (
+  <section id="programmation" class="bg-white py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-primary-dark text-4xl md:text-5xl font-extrabold text-center mb-16">
+        Programmation
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {artistes?.slice(0, limit).map((item) => (
+          <article class="bg-primary rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+            <!-- IMAGE -->
+            <div class="aspect-video relative overflow-hidden">
+              {item?.image_principale && (
+                <img
+                  src={fileUrl(item, item.image_principale)}
+                  alt={item.nom}
+                  class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                />
+              )}
+
+              <div class="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"></div>
+
+              <!-- DATE + HEURE -->
+              <div class="absolute bottom-4 left-4 text-white space-y-1">
+                <span class="bg-secondary-dark/90 backdrop-blur px-3 py-1 rounded-full text-sm font-semibold shadow">
+                  {item?.debut && new Date(item.debut).toLocaleDateString("fr-FR", {
+                    day: "2-digit",
+                    month: "2-digit",
+                  })}
+                </span>
+
+                {item?.debut && item?.fin && (
+                  <div class="text-xs opacity-90 font-medium">
+                    {formatHeure(item.debut)} → {formatHeure(item.fin)}
+                  </div>
+                )}
               </div>
             </div>
-          </div>
 
-          <!-- CONTENU -->
-          <div class="p-6">
-            <h3
-              class="text-xl font-bold text-secondary-dark group-hover:text-primary-dark transition-colors"
-            >
-              {artiste.nom}
-            </h3>
+            <!-- CONTENU -->
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-secondary-dark group-hover:text-primary-dark transition-colors">
+                {item?.nom || "Artiste inconnu"}
+              </h3>
 
-            <!-- SCÈNE (badge) -->
-            <p class="mt-2 flex items-center">
-              <span class="inline-block bg-secondary-dark/20 text-secondary-dark px-2 py-1 rounded-md text-xs font-bold">
-                {artiste.expand?.scene?.nom || "Scène inconnue"}
-              </span>
-            </p>
+              <!-- SCÈNE (badge) -->
+              <p class="mt-2 flex items-center">
+                <span class="inline-block bg-secondary-dark/20 text-secondary-dark px-2 py-1 rounded-md text-xs font-bold">
+                  {item?.expand?.scene?.nom || "Scène inconnue"}
+                </span>
+              </p>
 
-            <p class="text-black/50 text-sm italic mt-2">
-              {artiste.genre_musical}
-            </p>
+              {item?.genre_musical && (
+                <p class="text-black/50 text-sm italic mt-2">
+                  {item.genre_musical}
+                </p>
+              )}
 
-            <a
-              href={`/artiste/${artiste.id}`}
-              class="inline-block mt-5 text-secondary-dark font-bold hover:text-primary-dark transition-colors"
-            >
-              En savoir plus →
-            </a>
-          </div>
-        </article>
-      ))}
+              <a
+                href={`/artiste/${item?.id}`}
+                class="inline-block mt-5 text-secondary-dark font-bold hover:text-primary-dark transition-colors"
+              >
+                En savoir plus →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+)}

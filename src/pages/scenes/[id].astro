@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { sceneID } from "../../../backend/backend.mjs";
+import CardArtiste from "../../components/CardArtiste.astro";
+
+const { id } = Astro.params;
+const scene = await sceneID(id);
+
+function fileUrl(record, file) {
+    return `https://fanfa-comtoise.girardin-tarby.fr/api/files/${record.collectionId}/${record.id}/${file}`;
+}
+---
+
+<Layout title={scene.nom}>
+    <section class="bg-white py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- TITRE -->
+            <h1
+                class="text-primary-dark text-4xl md:text-5xl font-extrabold mb-10"
+            >
+                {scene.nom}
+            </h1>
+
+            <!-- IMAGE -->
+            {
+                scene.photo && (
+                    <img
+                        src={fileUrl(scene, scene.photo)}
+                        alt={scene.nom}
+                        class="w-full rounded-2xl shadow-lg mb-10 object-cover"
+                    />
+                )
+            }
+
+            <!-- DESCRIPTION -->
+            {
+                scene.description && (
+                    <p class="text-black/70 leading-relaxed text-lg mb-10">
+                        {scene.description}
+                    </p>
+                )
+            }
+
+            <!-- LOCALISATION -->
+            <div class="mt-10">
+                <h2 class="text-2xl font-bold text-secondary-dark mb-3">
+                    Localisation
+                </h2>
+                {scene.localisation}
+            </div>
+
+            <!-- ARTISTES -->
+            <div class="mt-12">
+                <h2 class="text-2xl font-bold text-secondary-dark mb-4">
+                    Artistes programmés
+                </h2>
+
+                {
+                    scene.expand?.artiste?.length > 0 ? (
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {scene.expand.artiste.map((artiste) => (
+                                <CardArtiste
+                                    artiste={artiste}
+                                    sceneName={scene.nom}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <p class="text-black/50">
+                            Aucun artiste programmé pour cette scène.
+                        </p>
+                    )
+                }
+            </div>
+        </div>
+
+        <!-- RETOUR -->
+        <div class="mt-12">
+            <a
+                href="/scenes"
+                class="inline-block text-secondary-dark font-bold hover:text-primary-dark transition-colors"
+            >
+                ← Retour aux scènes
+            </a>
+        </div>
+    </section>
+</Layout>

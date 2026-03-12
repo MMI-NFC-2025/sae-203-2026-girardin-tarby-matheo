@@ -5,47 +5,112 @@ import { Image } from "astro:assets";
 import Hero from "../assets/img/hero.avif";
 ---
 
-<Layout>
-  <section class="bg-white py-12 px-6 min-h-screen flex flex-col items-center md:grid md:grid-cols-10 md:gap-8">
+<Layout title="Contact">
+  <section
+    class="bg-white py-12 px-6 min-h-screen flex flex-col items-center md:grid md:grid-cols-10 md:gap-8"
+  >
     <!-- image + coordonnées -->
     <div class="md:col-start-1 md:col-end-5">
-      <Image src={Hero} alt="Festival" class="rounded-2xl w-full h-auto object-cover" />
-      <p class="text-primary-dark mt-6 font-bold text-lg">Nos coordonnées</p>
-      <a class="text-secondary-dark block mt-1" href="mailto:fanfa-comtoise@gmail.com">fanfa-comtoise@gmail.com</a>
-      <a class="text-secondary-dark block mt-1" href="tel:0606060606">06 06 06 06 06</a>
+      <Image
+        src={Hero}
+        alt="Festival"
+        class="rounded-2xl w-full h-auto object-cover"
+      />
+      <p class="text-primary-dark mt-6 font-bold text-4xl">Nos coordonnées</p>
+      <a
+        class="text-secondary-dark block mt-1 text-2xl"
+        href="mailto:fanfa-comtoise@gmail.com">fanfa-comtoise@gmail.com</a
+      >
+      <a class="text-secondary-dark block mt-1 text-2xl mb-10" href="tel:0606060606"
+        >06 06 06 06 06</a
+      >
     </div>
 
     <!-- formulaire -->
     <div class="w-full max-w-2xl md:col-start-6 md:col-end-10">
-      <h1 class="text-[#FF9800] text-5xl md:text-6xl font-bold text-center mb-12 italic">Contact</h1>
+      <h1
+        class="text-[#FF9800] text-5xl md:text-6xl font-bold text-center mb-12 italic"
+      >
+        Contact
+      </h1>
 
       <form id="contactForm" class="flex flex-col gap-6">
         <div>
-          <label for="nom" class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4">Nom</label>
-          <input type="text" id="nom" name="nom" required class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none" />
+          <label
+            for="nom"
+            class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4">Nom</label
+          >
+          <input
+            type="text"
+            id="nom"
+            name="nom"
+            required
+            class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none"
+          />
         </div>
 
         <div>
-          <label for="email" class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4">Email</label>
-          <input type="email" id="email" name="email" required class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none" />
+          <label
+            for="email"
+            class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4"
+            >Email</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none"
+          />
         </div>
 
         <div>
-          <label for="sujet" class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4">Sujet</label>
-          <input type="text" id="sujet" name="sujet" required class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none" />
+          <label
+            for="sujet"
+            class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4"
+            >Sujet</label
+          >
+          <input
+            type="text"
+            id="sujet"
+            name="sujet"
+            required
+            class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none"
+          />
         </div>
 
         <div>
-          <label for="message" class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4">Message</label>
-          <textarea id="message" name="message" rows="5" required class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none resize-none"></textarea>
+          <label
+            for="message"
+            class="block text-[#7A4B1A] font-bold text-xl mb-2 ml-4"
+            >Message</label
+          >
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            class="w-full bg-[#FFBD6F] border-none rounded-[30px] py-4 px-6 focus:ring-2 focus:ring-[#7A4B1A] outline-none resize-none"
+          ></textarea>
         </div>
 
         <div class="flex justify-center mt-4">
-          <button type="submit" class="bg-[#7A4B1A] text-white font-bold py-3 px-12 rounded-full hover:scale-105 transition-transform cursor-pointer">Envoyer</button>
+          <button
+            type="submit"
+            class="bg-[#7A4B1A] text-white font-bold py-3 px-12 rounded-full hover:scale-105 transition-transform cursor-pointer"
+            >Envoyer</button
+          >
         </div>
 
-        <p id="successMsg" class="hidden text-green-600 font-bold text-center mt-4">Votre message a bien été envoyé !</p>
-        <p id="errorMsg" class="hidden text-red-600 font-bold text-center mt-4">Une erreur est survenue. Vérifiez vos informations.</p>
+        <p
+          id="successMsg"
+          class="hidden text-green-600 font-bold text-center mt-4"
+        >
+          Votre message a bien été envoyé !
+        </p>
+        <p id="errorMsg" class="hidden text-red-600 font-bold text-center mt-4">
+          Une erreur est survenue. Vérifiez vos informations.
+        </p>
       </form>
     </div>
   </section>

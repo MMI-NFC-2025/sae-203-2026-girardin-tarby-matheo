@@ -1,0 +1,34 @@
+---
+// 404 page with a hero-style background and clear navigation back home
+import Layout from "../layouts/Layout.astro";
+
+const title = "Page introuvable";
+const description =
+    "La page que vous recherchez n'existe pas ou a été déplacée.";
+---
+
+<Layout title={title} description={description}>
+    <section
+        class="relative min-h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden"
+    >
+
+        <!-- content -->
+        <div class="relative z-10 px-6 py-16 max-w-xl">
+            <h1
+                class="text-4xl md:text-6xl font-bold text-secondary-dark drop-shadow-lg"
+            >
+                Oups ! Cette page n'existe pas
+            </h1>
+            <p class="mt-4 text-xl text-white/90 leading-relaxed">
+                La page que vous recherchez semble avoir pris une fausse note…
+                Elle n'existe plus ou a changé d'adresse.
+            </p>
+            <a
+                href="/"
+                class="mt-8 inline-block bg-primary-dark hover:bg-primary text-white font-bold py-3 px-10 rounded-full transition-colors text-lg"
+            >
+                Retour à l'accueil
+            </a>
+        </div>
+    </section>
+</Layout>
