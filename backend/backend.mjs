@@ -1,5 +1,5 @@
 import PocketBase from 'pocketbase';
-const pb = new PocketBase('https://fanfa-comtoise.girardin-tarby.fr');
+const pb = new PocketBase('https://fanfa-comtoise.girardin-tarby.fr:443');
 
 // artistes
 export async function artistesSorted() {

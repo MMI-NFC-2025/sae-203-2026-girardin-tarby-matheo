@@ -1,0 +1,53 @@
+---
+interface Props {
+    scene: any;
+}
+
+const { scene } = Astro.props;
+
+function fileUrl(record: any, file: any) {
+    return `https://fanfa-comtoise.girardin-tarby.fr/api/files/${record.collectionId}/${record.id}/${file}`;
+}
+---
+
+<article
+    class="bg-primary rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
+>
+    <!-- IMAGE -->
+    <div class="aspect-video relative overflow-hidden">
+        {
+            scene.photo && (
+                <img
+                    src={fileUrl(scene, scene.photo)}
+                    alt={scene.nom}
+                    class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                />
+            )
+        }      
+    </div>
+
+    <!-- CONTENU -->
+    <div class="p-6">
+        <h3
+            class="text-xl font-bold text-secondary-dark group-hover:text-primary-dark transition-colors"
+        >
+            {scene.nom}
+        </h3>
+
+        <p class="text-black/60 text-sm mt-2">
+            {scene.description}
+        </p>
+
+        <!-- NOMBRE D'ARTISTES -->
+        <p class="mt-3 text-xs font-semibold text-secondary-dark/70">
+            {scene.expand?.artiste?.length || 0} artistes programmés
+        </p>
+
+        <a
+            href={`/scenes/${scene.id}`}
+            class="inline-block mt-5 text-secondary-dark font-bold hover:text-primary-dark transition-colors"
+        >
+            Voir la scène →
+        </a>
+    </div>
+</article>

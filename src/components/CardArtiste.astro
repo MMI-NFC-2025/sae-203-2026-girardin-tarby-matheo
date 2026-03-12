@@ -2,13 +2,13 @@
 
 import { artistesSorted } from "../../backend/backend.mjs";
 
-function fileUrl(record, file) {
+function fileUrl(record: any, file: any) {
   return `https://fanfa-comtoise.girardin-tarby.fr/api/files/${record.collectionId}/${record.id}/${file}`;
 }
 
 const artistes = await artistesSorted();
 
-function formatHeure(date) {
+function formatHeure(date: any) {
   return new Date(date).toLocaleTimeString("fr-FR", {
     hour: "2-digit",
     minute: "2-digit",
@@ -36,7 +36,7 @@ function formatHeure(date) {
               />
             )}
 
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"></div>
 
             <!-- DATE + HEURE -->
             <div class="absolute bottom-4 left-4 text-white space-y-1">
